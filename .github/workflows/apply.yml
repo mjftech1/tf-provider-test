@@ -16,7 +16,19 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-      - name: Terraform Init
-        uses: hashicorp/setup-terraform@v1
+      - name: Terraform version
+        shell: bash
+        run: terraform version
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+      - name: Terraform init
+        shell: bash
+        run: terraform init
+      - name: Terraform Plan
+        shell: bash
+        run: terraform plan -out=tfplan.plan
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          name: tfplan
+          path: tfplan.plan
