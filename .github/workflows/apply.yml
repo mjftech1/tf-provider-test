@@ -35,6 +35,7 @@ jobs:
         with:
           name: tfplan
           path: tfplan.plan
+          retention-days: 30
   apply:
     name: Terraform Apply
     needs: plan
@@ -42,6 +43,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: tfplan
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
