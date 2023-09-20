@@ -1,4 +1,10 @@
 terraform {
+  cloud {
+    organization = "mjftech"
+    workspaces {
+      name = "tf-artifactory-test"
+    }
+  }
   required_providers {
     artifactory = {
       source  = "jfrog/artifactory"
@@ -8,5 +14,5 @@ terraform {
 }
 
 provider "artifactory" {
-  url          = "https://mjftech1.jfrog.io/artifactory"
+  url = "https://mjftech1.jfrog.io/artifactory"
 }
