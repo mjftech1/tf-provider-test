@@ -35,3 +35,27 @@ jobs:
         with:
           name: tfplan
           path: tfplan.plan
+  apply:
+    name: Terraform Apply
+    needs: plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Terraform version
+        shell: bash
+        run: terraform version
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+      - name: Terraform init
+        shell: bash
+        run: terraform init
+      - name: Terraform Apply
+        shell: bash
+        run: terraform apply -auto-approve tfplan.plan
+        env:
+          JFROG_ACCESS_TOKEN: ${{ secrets.JFROG_ACCESS_TOKEN }}
