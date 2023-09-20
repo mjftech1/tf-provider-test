@@ -1,6 +1,7 @@
 name: Terraform
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -27,6 +28,8 @@ jobs:
       - name: Terraform Plan
         shell: bash
         run: terraform plan -out=tfplan.plan
+        env:
+          JFROG_ACCESS_TOKEN: ${{ secrets.JFROG_ACCESS_TOKEN }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
