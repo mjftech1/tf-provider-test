@@ -28,7 +28,7 @@ jobs:
           AF_API_TOKEN: ${{ secrets.AF_API_TOKEN }}
       - name: Wait for allowlist update before continuing
         run: |
-          while [ "$(curl -s --location --request GET 'https://my.jfrog.com/api/jmis/v1/allowlist/mjftech1' --header 'Authorization: Bearer '${{ secrets.AF_API_TOKEN }} | jq -r '.status')" == "COMPLETED"  ]; do
+          while [ "$(curl -s --location --request GET 'https://my.jfrog.com/api/jmis/v1/allowlist/mjftech1' --header 'Authorization: Bearer '${{ secrets.AF_API_TOKEN }} | jq -r '.status')" == "IN_PROGRESS"  ]; do
             echo -n '.'
             sleep 5
           done
@@ -107,7 +107,7 @@ jobs:
           AF_API_TOKEN: ${{ secrets.AF_API_TOKEN }}
       - name: Wait for allowlist update before continuing
         run: |
-          while [ "$(curl -s --location --request GET 'https://my.jfrog.com/api/jmis/v1/allowlist/mjftech1' --header 'Authorization: Bearer '${{ secrets.AF_API_TOKEN }} | jq -r '.status')" == "COMPLETED"  ]; do
+          while [ "$(curl -s --location --request GET 'https://my.jfrog.com/api/jmis/v1/allowlist/mjftech1' --header 'Authorization: Bearer '${{ secrets.AF_API_TOKEN }} | jq -r '.status')" == "IN_PROGRESS"  ]; do
             echo -n '.'
             sleep 5
           done
