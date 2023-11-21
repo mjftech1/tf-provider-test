@@ -14,5 +14,5 @@ terraform {
 }
 
 provider "artifactory" {
-  url = "https://mjftech1.jfrog.io/artifactory"
+  url = "https://bztrial.jfrog.io/artifactory"
 }
