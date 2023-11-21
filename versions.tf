@@ -8,11 +8,11 @@ terraform {
   required_providers {
     artifactory = {
       source  = "jfrog/artifactory"
-      version = "9.0.0"
+      version = "9.9.0"
     }
   }
 }
 
 provider "artifactory" {
-  url = "https://bztrial.jfrog.io/artifactory"
+  url = "https://bzytrial.jfrog.io/artifactory"
 }
